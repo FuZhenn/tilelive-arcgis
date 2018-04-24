@@ -98,9 +98,9 @@ supports-color@1.2.0:
   version "1.2.0"
   resolved "http://registry.npm.taobao.org/supports-color/download/supports-color-1.2.0.tgz#ff1ed1e61169d06b3cf2d588e188b18d8847e17e"
 
-"tiler-arcgis-bundle@git+https://github.com/fuzhenn/tiler-arcgis-bundle#^0.3.x":
-  version "0.3.0"
-  resolved "git+https://github.com/fuzhenn/tiler-arcgis-bundle#4058ca27bd48a0015435f961d1da785c9e350cbc"
+tiler-arcgis-bundle@^0.3.1:
+  version "0.3.1"
+  resolved "http://registry.npm.taobao.org/tiler-arcgis-bundle/download/tiler-arcgis-bundle-0.3.1.tgz#9cda5b5f3cb412e02ceca2cba0c8ec9eee3969dd"
 
 tiler-arcgis-file@^0.1.3:
   version "0.1.3"
