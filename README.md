@@ -15,7 +15,7 @@ There are 3 types of ArcGIS Tile Formats:
 
 * [Compact Tile](https://server.arcgis.com/zh-cn/server/latest/publish-services/windows/inside-the-compact-cache-storage-format.htm) is a tile format since ArcGIS version 10. It bundles exploded tile files into a .bundlx and a .bundle file and really reduces number of tile files.
 
-* Improved Compact Tile: a new improved compact format introduced in ArcGIS 10.3,  it is not supported yet now and we are working on it.
+* Improved Compact Tile: a new improved compact format introduced in ArcGIS 10.3.
 
 ## Install
 
