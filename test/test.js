@@ -64,4 +64,23 @@ describe('reading arcgis tilesources', function() {
 
         });
     });
+
+    it('should retrieve a tile from bundle-based(improved) source correctly', function(done) {
+        var tilepath = __dirname+'/sample/newbundle/tile.png';
+        var bundlepath = __dirname+'/sample/newbundle/_alllayers/L10/R0180C0300.bundle';
+        new Arcgis('arcgis://./test/sample/newbundle', function(err, source) {
+            if (err) return done(err);
+            source.getTile(10, 0x358, 0x1a2, function(err, tile, headers) {
+                if (err) return done(err);
+                var mtime = fs.statSync(bundlepath).mtime;
+                assert.deepEqual(tile, fs.readFileSync(tilepath));
+                assert.equal(headers['Last-Modified'], new Date(mtime).toUTCString());
+                assert.equal(headers['Content-Type'], 'image/png');
+                assert.equal(headers['ETag'], tile.length+'-'+Number(mtime));
+                done(null);
+            });
+
+        });
+    });
+
 });
