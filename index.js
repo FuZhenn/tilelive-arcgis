@@ -27,14 +27,15 @@ function ArcTilelive(uri, callback) {
     }
 
     this.basepath = uri.pathname;
-    this._init(uri.query.filetype, callback);
+    this._init(uri.query, callback);
 }
 
 ArcTilelive.registerProtocols = function(tilelive) {
     tilelive.protocols['arcgis:'] = ArcTilelive;
 };
 
-ArcTilelive.prototype._init = function(filetype, callback) {
+ArcTilelive.prototype._init = function(query, callback) {
+    var filetype = query.filetype;
     var me = this;
     this.getInfo(function(err, info) {
         if (err) {
@@ -90,8 +91,11 @@ ArcTilelive.prototype._init = function(filetype, callback) {
             callback(new Error('invalid StorageFormat or PacketSize in ' + info.filename), me);
             return;
         }
-        if (format === 'esriMapCacheStorageModeCompact') {
-            me.tiler = new BundleTiler(me.basepath, packSize);
+        if (format.indexOf('esriMapCacheStorageModeCompact') === 0) {
+            var options = query;
+            options.packSize = packSize;
+            options.storageFormat = format;
+            me.tiler = new BundleTiler(me.basepath, options);
         } else {
             callback(new Error('unsupported StorageFormat:' + format + ' in ' + info.filename), me);
         }
